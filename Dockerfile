@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get install -y postgresql-server-dev-15 postgresql-client-15 wget unzip
 
-RUN wget -c https://github.com/duckdb/duckdb/archive/refs/tags/v0.9.2.zip \
+RUN wget -nv -c -O duckdb-0.9.2.zip https://github.com/duckdb/duckdb/archive/refs/tags/v0.9.2.zip \
    && unzip -d . duckdb-0.9.2.zip \
    && cd duckdb-0.9.2\
    && GEN=ninja make
