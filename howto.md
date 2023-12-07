@@ -19,7 +19,9 @@ CREATE EXTENSION duckdb_fdw;
    
 CREATE SERVER duckdb_server                                              
 FOREIGN DATA WRAPPER duckdb_fdw                                                     
-OPTIONS (database '/pgduck/main.db');
+OPTIONS (database '/pgduck/main.db',
+	keep_connections 'true',
+	read_only 'true');
 
 IMPORT FOREIGN SCHEMA main from server duckdb_server into public;
 ```
