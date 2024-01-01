@@ -15,5 +15,9 @@ RUN git clone -b makefile_version https://github.com/wearpants/duckdb_fdw.git  \
    && make USE_PGXS=1 \
    && make install USE_PGXS=1
 
+RUN apt-get install -y pgxnclient \
+   && pgxnclient install foreign_table_exposer \
+   && echo shared_preload_libraries = 'foreign_table_exposer' >> /var/lib/postgresql/data/postgresql.conf 
+
 ENV POSTGRES_HOST_AUTH_METHOD='trust'
 USER postgres
